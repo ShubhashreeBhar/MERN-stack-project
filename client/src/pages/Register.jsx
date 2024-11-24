@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 
 export  const Register=()=>{
@@ -9,6 +12,11 @@ export  const Register=()=>{
         password:"",
 
     });
+    
+   const navigate=useNavigate();
+   const { storeTokenInLS } = useAuth();
+
+
     const handleInput=(e)=>{
         console.log(e);
         let name =e.target.name;
@@ -19,9 +27,36 @@ export  const Register=()=>{
         })
 
     };
-    const handleSubmit=(e)=>{
+   const handleSubmit= async (e)=>{
         e.preventDefault();
-        alert(user);
+        console.log(user);
+        try{
+      
+        const response= await fetch(`http://localhost:4000/api/auth/register`,
+            {method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+              } ,
+              body:JSON.stringify(user), 
+            });
+            const res_data = await response.json();
+            console.log("res from server", res_data.extraDetails);
+
+            if(response.ok){
+                storeTokenInLS(res_data.token);
+                setUser({username:"",email:"",phone:"",password:""});
+                navigate("/login");
+            }
+            else {
+                toast.error(
+                    res_data.extraDetails ? res_data.extraDetails : res_data.message
+                  );
+
+        }
+    }
+        catch(error){
+            console.log("register error",error);
+        }
     };
 
     return<>

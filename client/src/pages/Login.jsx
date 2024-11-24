@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
+import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
+
 export const Login =()=>{
     const [user,setUser]= useState({
         
@@ -6,6 +10,9 @@ export const Login =()=>{
         password:"",
 
     });
+    const Navigate=useNavigate();
+    const { storeTokenInLS } = useAuth();
+
     const handleInput=(e)=>{
         console.log(e);
         let name =e.target.name;
@@ -16,9 +23,39 @@ export const Login =()=>{
         })
 
     };
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault();
-        alert(user);
+      try{
+        const response=  await fetch(`http://localhost:4000/api/auth/login`,
+            {method:"POST",
+              headers:{
+                "Content-Type":"application/json",
+              } ,
+              body:JSON.stringify(user), 
+            });
+            console.log("login form", response);
+            const res_data = await response.json();
+
+            if(response.ok){
+                //alert("login successful");
+                storeTokenInLS(res_data.token);
+                setUser({email:"",password:""});
+                toast.success("Login successful");
+                Navigate("/");
+                
+            }
+            else{
+                toast.error(
+                    res_data.extraDetails ? res_data.extraDetails : res_data.message
+                  );
+                  console.log("invalid credential");  
+            }
+
+            console.log("login form",response);
+        }
+        catch(error){
+            console.log(error);
+        }
     };
 
     return<>
@@ -66,7 +103,7 @@ export const Login =()=>{
                                 </div>
                                 <br/>
                                 <button type="submit" className="btn btn-submit">
-                                    LogIn Now</button>
+                                    Register Now</button>
 
                                 
                             </form>
