@@ -51,7 +51,6 @@ export const Login =()=>{
                   console.log("invalid credential");  
             }
 
-            console.log("login form",response);
         }
         catch(error){
             console.log(error);
@@ -61,10 +60,10 @@ export const Login =()=>{
     return<>
         <section>
             <main>
-                <div className="section-registrstion">
+                <div className="section-registration">
                     <div className="container grid grid-two-cols">
                         <div className="registration-image">
-                            <img src="/img/login.png" alt="login form"width="400"height="400" />
+                            <img src="/img/login.png" alt="login form" />
                         </div>
 
                     
@@ -101,10 +100,10 @@ export const Login =()=>{
                                     value={user.password}
                                     onChange={handleInput}/>
                                 </div>
-                                <br/>
+                                <div>
                                 <button type="submit" className="btn btn-submit">
-                                    Register Now</button>
-
+                                    LogIn Now</button>
+                                 </div>
                                 
                             </form>
                         </div>

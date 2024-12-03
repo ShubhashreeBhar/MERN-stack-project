@@ -23,21 +23,21 @@ const register = async (req, res) => {
         }
 
         //hash the password
-        // const saltRound=10;
-        // const hash_password= await bcrypt.hash(password,saltRound);
+        const saltRound=10;
+         const hash_password= await bcrypt.hash(password,saltRound);
 
         // Create a new user
         const newUser = await User.create({
-            username, email, phone, password
+            username, email, phone, password: hash_password
         });
 
         // Return the newly created user
         res.status(201).json({ msg:"registration is successful." ,token:await newUser.generateToken(),userId:newUser._id.toString(),});
 
     } catch (err) {
-       // console.log(err);
+        console.log(err);
         res.status(500).json({ msg: "Internal server error" });
-        next(err);
+      //  next(err);
     }
 };
 

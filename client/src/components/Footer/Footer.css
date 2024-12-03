@@ -3,4 +3,9 @@ footer {
     text-align: center;
     background-color: var(--btn-color);
     margin-top: auto;
+    margin-bottom: auto;
+   
+  position: relative;
+  bottom: 10;
+  width: 100%;
   }

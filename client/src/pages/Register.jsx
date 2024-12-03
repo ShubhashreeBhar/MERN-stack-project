@@ -24,7 +24,7 @@ export  const Register=()=>{
         setUser({
             ...user,
             [name]:value,
-        })
+        });
 
     };
    const handleSubmit= async (e)=>{
@@ -45,7 +45,8 @@ export  const Register=()=>{
             if(response.ok){
                 storeTokenInLS(res_data.token);
                 setUser({username:"",email:"",phone:"",password:""});
-                navigate("/login");
+                toast.success("Registration successful");
+                navigate("/");
             }
             else {
                 toast.error(
@@ -62,10 +63,10 @@ export  const Register=()=>{
     return<>
         <section>
             <main>
-                <div className="section-registrstion">
+                <div className="section-registration">
                     <div className="container grid grid-two-cols">
                         <div className="registration-image">
-                            <img src="/img/registration.png" alt="registration"width="500"height="500" />
+                            <img src="/img/registration.png" alt="registration" />
                         </div>
 
                     
@@ -123,10 +124,11 @@ export  const Register=()=>{
                                     value={user.password}
                                     onChange={handleInput}/>
                                 </div>
-                                <br/>
+                                
+                                <div>
                                 <button type="submit" className="btn btn-submit">
                                     Register Now</button>
-
+                                </div>
                                 
                             </form>
                         </div>
