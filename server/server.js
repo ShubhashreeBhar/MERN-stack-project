@@ -7,6 +7,9 @@ const contactRoute=require("./router/contact-router");
 const connectdb=require('./utils/db');
 const errorMiddleware=require("./middlewares/error-middleware");
 const  serviceRoute =require("./router/service-router");
+const adminRoute=require("./router/admin-router");
+
+
 
 const corsOption={
     origin:"http://localhost:5173",
@@ -20,7 +23,7 @@ app.use("/api/auth",authRouter);
 app.use("/api/form",contactRoute);
 app.use("/api/data",serviceRoute);
 
-
+app.use("/api/admin",adminRoute);
 
 app.use(errorMiddleware);
 
