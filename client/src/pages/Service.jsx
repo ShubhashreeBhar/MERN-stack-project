@@ -17,7 +17,7 @@ export const Service = () => {
             <div className="card" key={index}>
               <div className="card-img">
                 <img
-                  src="/img/home.png"
+                  src="/img/event-management.jpg"
                   alt="our services info"
                   width="200"
                 />

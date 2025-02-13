@@ -1,6 +1,6 @@
 *{
     margin:0;
-    padding: 0;
+  padding: 0;
     box-sizing:border-box;
    /* font-family:Urbanist, system-ui, Avenir, Helvetica, Arial, sans-serif;
   */
@@ -17,7 +17,7 @@
 
 
 html{
-    font-size: 62.5%;
+    font-size: 70.5%;
 }
 
 body{
@@ -28,10 +28,15 @@ body{
 }
 
 h1{
-    font-size: 5.4rem;
+    font-size: 4.4rem;
     line-height: 1.1;
     font-weight: bold;
-}
+    color: #747bff;
+   
+  }
+  b{
+    color: #2992d8;
+  }
 
 p,
 li,
@@ -64,13 +69,13 @@ li{
 
 .container{
     max-width: 140rem;
-    padding: 4rem 2.4rem;
+    padding: 2rem 3rem;
     margin: 0 auto;
 }
 
 .grid{
     display: grid;
-    gap:6.4rem;
+    gap:2.4rem;
 }
 
 .grid-two-cols{
@@ -147,6 +152,7 @@ a:active{
 .main-heading {
     position: relative;
     text-transform: capitalize;
+    margin: 2rem;
   
     &::after {
       content: "";
@@ -179,7 +185,7 @@ a:active{
     }
     .hero-content{
         & p{
-            margin: 2.4rem 0 4.8rem 0;
+            margin: 2.4rem 0 3.8rem 0;
             &:first-child{
                 margin: 0 0 1.2rem 0;
                
@@ -187,8 +193,10 @@ a:active{
         }
     } 
     .hero-image{
-        display: flex;
+        display: inline-flex;
         justify-content: center;
+        
+       
         & img{
             width: 70%;
             height: auto;
@@ -198,7 +206,8 @@ a:active{
 }
 
 .section-analytics{
-    margin: 9.6rem 0;
+    margin: 0.01rem 0;
+    padding: 2rem;
     & .container{
         background-color: var(--bg-color);
         border-radius: 1rem;
@@ -254,7 +263,7 @@ a:active{
         & form{
             display: flex;
             flex-direction: column;
-            gap:2rem;
+            gap:3rem;
         }
         & label{
             display: block;
